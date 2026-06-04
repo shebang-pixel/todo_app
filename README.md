@@ -2,7 +2,7 @@
 
 A simple and efficient task management application to help you organize your daily duties and track your progress.
 
-## 🚀 How It Works
+## How It Works
 
 This project is a React-based Single Page Application (SPA) built with **Vite**. It allows users to manage a list of tasks entirely within the browser.
 
@@ -11,7 +11,7 @@ This project is a React-based Single Page Application (SPA) built with **Vite**.
 - **Vite**: Provides a fast development environment and optimized production builds.
 - **Data Persistence**: Uses `localStorage` to ensure your data remains even after refreshing the page.
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **UI Library**: React 18
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
@@ -22,13 +22,13 @@ This project is a React-based Single Page Application (SPA) built with **Vite**.
 2. **Processing**: React state manages the task list. Changes are automatically saved to `localStorage`.
 3. **Output**: A responsive, real-time updated list of tasks.
 
-## 🛠 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - **Node.js**: Version 18.0 or higher.
 - **npm**: Node Package Manager (comes with Node.js).
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository:**
    ```bash
@@ -41,7 +41,7 @@ Before you begin, ensure you have the following installed:
    npm install
    ```
 
-## 🏃 Running the Project
+## Running the Project
 
 ### Development Mode
 To run the project with hot-reloading or debug logging:

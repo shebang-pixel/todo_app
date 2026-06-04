@@ -48,7 +48,13 @@ const MyTodos = () => {
             <div className="flex flex-1">
                 <Sidebar />
                 <main id="center" className="flex-1 text-left px-6 lg:px-12 py-8">
-                    <h1 className="mb-8">My Todos</h1>
+                    <div className="flex items-center gap-3 mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 lg:w-10 lg:h-10 text-[var(--accent)]">
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                            <path d="m9 11 3 3L22 4"/>
+                        </svg>
+                        <h1 className="my-0">My Todos</h1>
+                    </div>
                     <div className="flex flex-col gap-3">
                         <AnimatePresence mode="popLayout">
                         {todos.length > 0 ? (
