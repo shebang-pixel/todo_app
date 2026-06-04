@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { toast, Toaster } from 'sonner';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Sidebar from '../components/sidebar';
@@ -16,44 +18,74 @@ const MyTodos = () => {
         const updatedTodos = todos.map(todo => 
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
         );
+        const todo = todos.find(t => t.id === id);
         setTodos(updatedTodos);
         localStorage.setItem('todos', JSON.stringify(updatedTodos));
-    };
-
-    const handleDelete = (id) => {
-        if (window.confirm('Are you sure you want to delete this task?')) {
-            const updatedTodos = todos.filter(todo => todo.id !== id);
-            setTodos(updatedTodos);
-            localStorage.setItem('todos', JSON.stringify(updatedTodos));
+        
+        if (!todo.completed) {
+            toast.success('Task marked as completed');
         }
     };
 
+    const handleDelete = (id) => {
+        // Optimistic UI: Update state immediately
+        const updatedTodos = todos.filter(todo => todo.id !== id);
+        setTodos(updatedTodos);
+        
+        // Persist change
+        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+        toast.error('Task permanently deleted');
+    };
+
     const handleEdit = (todo) => {
-        // Navigation logic for editing can be added here
         console.log('Edit todo:', todo);
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div className="flex flex-col min-h-screen bg-[var(--bg)]">
+            <Toaster position="bottom-right" richColors />
             <Navbar />
-            <div style={{ display: 'flex', flex: 1 }}>
+            <div className="flex flex-1">
                 <Sidebar />
-                <main id="center" style={{ flex: 1, textAlign: 'left', padding: '0 2rem' }}>
-                    <h1>My Todos</h1>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <main id="center" className="flex-1 text-left px-6 lg:px-12 py-8">
+                    <h1 className="mb-8">My Todos</h1>
+                    <div className="flex flex-col gap-3">
+                        <AnimatePresence mode="popLayout">
                         {todos.length > 0 ? (
                             todos.map(todo => (
-                                <TodoCard 
-                                    key={todo.id} 
-                                    todo={todo} 
-                                    onToggle={handleToggle} 
-                                    onDelete={handleDelete} 
-                                    onEdit={handleEdit} 
-                                />
+                                <motion.div
+                                    key={todo.id}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <TodoCard 
+                                        todo={todo} 
+                                        onToggle={handleToggle} 
+                                        onDelete={handleDelete} 
+                                        onEdit={handleEdit} 
+                                    />
+                                </motion.div>
                             ))
                         ) : (
-                            <p style={{ color: 'var(--text)', fontStyle: 'italic' }}>No tasks found. Click "New Todo" to get started!</p>
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex flex-col items-center justify-center py-24 text-center"
+                            >
+                                <div className="w-24 h-24 mb-6 text-[var(--accent)] opacity-20">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3m0 0h3m-3 0v3m0-3V9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <h2 className="text-xl font-medium text-[var(--text-h)]">No tasks found</h2>
+                                <p className="text-[var(--text)] max-w-sm mt-3 leading-relaxed">
+                                    Your workspace is clear. Use the action panel to create a new entry and start your journey.
+                                </p>
+                            </motion.div>
                         )}
+                        </AnimatePresence>
                     </div>
                 </main>
             </div> 

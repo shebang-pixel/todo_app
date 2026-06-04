@@ -9,7 +9,13 @@ This project is a React-based Single Page Application (SPA) built with **Vite**.
 **Key Features:**
 - **React Components**: Modular UI for adding, listing, and completing tasks.
 - **Vite**: Provides a fast development environment and optimized production builds.
-- **LocalStorage**: Persists your todo list in the browser so your data remains even after refreshing the page.
+- **Data Persistence**: Uses `localStorage` to ensure your data remains even after refreshing the page.
+
+## 🛠️ Tech Stack
+- **UI Library**: React 18
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
 
 **Workflow:**
 1. **Input**: Users enter task descriptions via the web interface.
