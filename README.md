@@ -24,10 +24,16 @@ Before you begin, ensure you have the following installed:
 
 ## 📦 Installation
 
-Install the project dependencies using npm:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/shebang-pixel/todo_app.git
+   cd todo_app
+   ```
+
+2. **Install dependencies:**
    ```bash
    npm install
-```
+   ```
 
 ## 🏃 Running the Project
 
@@ -43,7 +49,7 @@ To compile or optimize the project for production:
 npm run build
 ```
 
-The application will typically be available at `http://localhost:3000` unless configured otherwise.
+The application will typically be available at `http://localhost:5178` unless configured otherwise.
 
 ## 🧪 Testing
 
