@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Moon, Sun, Trash2, User } from 'lucide-react';
 
 const Settings = () => {
     const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -20,38 +21,34 @@ const Settings = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', paddingBottom: '2rem' }}>
+        <div className="flex flex-col gap-10 lg:gap-12 pb-8 max-w-2xl text-left">
             <section>
-                <h2 style={{ marginBottom: '0.5rem' }}>Appearance</h2>
-                <p style={{ color: 'var(--text)', marginBottom: '1.5rem' }}>Personalize your workspace theme.</p>
-                <button onClick={toggleTheme} className="counter" style={{ marginBottom: 0, cursor: 'pointer' }}>
-                    {theme === 'light' ? '🌙 Switch to Dark' : '☀️ Switch to Light'}
+                <h2 className="mb-2">Appearance</h2>
+                <p className="text-[var(--text)] mb-6">Personalize your workspace theme.</p>
+                <button 
+                    onClick={toggleTheme} 
+                    className="flex items-center gap-2 px-4 py-2 bg-[var(--code-bg)] text-[var(--text-h)] rounded-lg font-medium border border-[var(--border)] hover:border-[var(--accent-border)] transition-colors cursor-pointer"
+                >
+                    {theme === 'light' ? <><Moon size={18} /> Switch to Dark</> : <><Sun size={18} /> Switch to Light</>}
                 </button>
             </section>
 
             <section>
-                <h2 style={{ marginBottom: '0.5rem' }}>Data Management</h2>
-                <p style={{ color: 'var(--text)', marginBottom: '1.5rem' }}>Erase all your data from this browser.</p>
+                <h2 className="mb-2">Data Management</h2>
+                <p className="text-[var(--text)] mb-6">Erase all your data from this browser.</p>
                 <button 
                     onClick={handleClearData}
-                    style={{ 
-                        padding: '0.6rem 1.2rem', 
-                        backgroundColor: 'transparent', 
-                        border: '1px solid #e5484d', 
-                        color: '#e5484d',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontWeight: '500'
-                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-transparent border border-red-500/50 text-red-500 rounded-lg font-medium hover:bg-red-500/5 transition-colors cursor-pointer"
                 >
+                    <Trash2 size={18} />
                     Clear All Data
                 </button>
             </section>
 
             <section>
-                <h2 style={{ marginBottom: '0.5rem' }}>User Account</h2>
-                <div style={{ padding: '1.5rem', background: 'var(--accent-bg)', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '1rem', maxWidth: '400px' }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--accent)', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>JD</div>
+                <h2 className="mb-2">User Account</h2>
+                <div className="p-6 bg-[var(--accent-bg)] border border-[var(--accent-border)] rounded-2xl flex items-center gap-4 w-full sm:w-fit">
+                    <div className="w-12 h-12 rounded-full bg-[var(--accent)] flex items-center justify-center text-white font-bold text-lg shrink-0">JD</div>
                     <div>
                         <p style={{ fontWeight: 'bold', color: 'var(--text-h)', margin: 0 }}>John Doe</p>
                         <p style={{ fontSize: '0.85rem', margin: 0 }}>john.doe@portfolio.dev</p>

@@ -57,7 +57,7 @@ npm run build
 
 The application will typically be available at `http://localhost:5178` unless configured otherwise.
 
-## 🧪 Testing
+## Testing
 
 To ensure everything is working correctly, run the test suite:
 ```bash

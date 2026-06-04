@@ -1,55 +1,43 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const TodoCard = ({ todo, onToggle, onDelete, onEdit }) => {
     const navigate = useNavigate();
 
     return (
-        <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '1rem 1.5rem',
-            background: 'var(--bg)',
-            borderRadius: '12px',
-            boxShadow: 'var(--shadow)',
-            marginBottom: '1rem',
-            gap: '1rem',
-            transition: 'transform 0.2s ease',
-            cursor: 'pointer'
-        }}
-        onClick={() => navigate(`/todo/${todo.id}`)}
+        <div 
+            className="flex items-center p-4 px-6 bg-[var(--bg)] border border-[var(--border)] rounded-xl shadow-[var(--shadow)] gap-4 transition-all hover:border-[var(--accent-border)] hover:translate-y-[-2px] cursor-pointer group"
+            onClick={() => navigate(`/todo/${todo.id}`)}
         >
             <input 
                 type="checkbox" 
                 checked={todo.completed} 
                 onChange={(e) => { e.stopPropagation(); onToggle(todo.id); }}
-                style={{ cursor: 'pointer', width: '1.2rem', height: '1.2rem', accentColor: 'var(--accent)' }}
+                className="cursor-pointer w-5 h-5 accent-[var(--accent)]"
             />
             
-            <div style={{ flex: 1, textAlign: 'left' }}>
-                <h3 style={{ 
-                    margin: 0, 
-                    fontSize: '1.1rem', 
-                    fontWeight: '500',
-                    color: todo.completed ? 'var(--text)' : 'var(--text-h)',
-                    textDecoration: todo.completed ? 'line-through' : 'none',
-                    opacity: todo.completed ? 0.6 : 1
-                }}>
+            <div className="flex-1 text-left">
+                <h3 className={`m-0 text-lg font-medium transition-all ${
+                    todo.completed 
+                        ? 'text-[var(--text)] line-through opacity-50' 
+                        : 'text-[var(--text-h)]'
+                }`}>
                     {todo.name}
                 </h3>
             </div>
 
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button 
                     onClick={(e) => { e.stopPropagation(); onEdit(todo); }}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.1rem', padding: '0.4rem', borderRadius: '6px', color: 'var(--text)' }}
+                    className="p-2 hover:bg-[var(--accent-bg)] hover:text-[var(--accent)] rounded-lg transition-colors text-[var(--text)]"
                     title="Edit Task"
-                >✏️</button>
+                ><Pencil size={18} /></button>
                 <button 
                     onClick={(e) => { e.stopPropagation(); onDelete(todo.id); }}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.1rem', padding: '0.4rem', borderRadius: '6px', color: '#e5484d' }}
+                    className="p-2 hover:bg-red-500/10 hover:text-red-500 rounded-lg transition-colors text-[var(--text)]"
                     title="Delete Task"
-                >🗑️</button>
+                ><Trash2 size={18} /></button>
             </div>
         </div>
     );

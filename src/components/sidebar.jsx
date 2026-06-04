@@ -1,25 +1,40 @@
 import React from 'react';
-import EditTodo from '../pages/edit_todo';
 import { Link } from 'react-router-dom';
+import { ListTodo, Star, CheckCircle2, Plus } from 'lucide-react';
 
 const Sidebar = () => {
     return (
-        <aside className="sidebar" style={{ width: '250px', padding: '2rem 1rem', textAlign: 'left' }}>
-            <h2 style={{ fontSize: '1.2rem', marginBottom: '1.5rem' }}>Menu</h2>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li style={{ marginBottom: '1rem' }}>
-                    <Link to="/" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: '500' }}>📅 All Tasks</Link>
+        <aside className="w-full lg:w-[250px] p-6 lg:p-8 text-left bg-[var(--bg)] border-b lg:border-b-0 lg:border-r border-[var(--border)]">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text)] opacity-50 mb-6">
+                Menu
+            </h2>
+            <ul className="list-none p-0 flex flex-col gap-1">
+                <li>
+                    <Link to="/" className="flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--accent)] bg-[var(--accent-bg)] font-medium transition-colors">
+                        <ListTodo size={18} />
+                        All Tasks
+                    </Link>
                 </li>
-                <li style={{ marginBottom: '1rem' }}>
-                    <Link to="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>⭐ Important</Link>
+                <li>
+                    <Link to="/" className="flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--text)] hover:bg-[var(--code-bg)] transition-colors">
+                        <Star size={18} />
+                        Important
+                    </Link>
                 </li>
-                <li style={{ marginBottom: '1rem' }}>
-                    <Link to="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>✅ Completed</Link>
+                <li>
+                    <Link to="/" className="flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--text)] hover:bg-[var(--code-bg)] transition-colors">
+                        <CheckCircle2 size={18} />
+                        Completed
+                    </Link>
                 </li>
-                <li style={{ marginBottom: '1rem' }}><Link to="/edit_todo" style={{ marginLeft: '1.5rem', textDecoration: 'none' }}>
-                    <button className="counter" style={{ margin: 0, cursor: 'pointer' }}>New Todo</button>
-                </Link></li>
             </ul>
+
+            <div className="mt-8 pt-8 border-t border-[var(--border)]">
+                <Link to="/edit_todo" className="flex items-center justify-center gap-2 w-full py-2.5 bg-[var(--accent)] text-white rounded-xl font-medium shadow-lg shadow-purple-500/20 hover:opacity-90 transition-all active:scale-95">
+                    <Plus size={18} />
+                    New Todo
+                </Link>
+            </div>
         </aside>
     );
 };

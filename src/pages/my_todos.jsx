@@ -45,9 +45,9 @@ const MyTodos = () => {
         <div className="flex flex-col min-h-screen bg-[var(--bg)]">
             <Toaster position="bottom-right" richColors />
             <Navbar />
-            <div className="flex flex-1">
+            <div className="flex flex-col lg:flex-row flex-1">
                 <Sidebar />
-                <main id="center" className="flex-1 text-left px-6 lg:px-12 py-8">
+                <main id="center" className="flex-1 text-left px-4 md:px-8 lg:px-12 py-6 lg:py-8">
                     <div className="flex items-center gap-3 mb-8">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 lg:w-10 lg:h-10 text-[var(--accent)]">
                             <rect width="18" height="18" x="3" y="3" rx="2"/>
